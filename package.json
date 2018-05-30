@@ -7,7 +7,7 @@
 	"scripts": {
 		"build:ts": "webpack",
 		"build:ts:prod": "cross-env NODE_ENV=production webpack",
-		"pretty": "prettier --use-tabs --write \"{src,demos,tests}/**/*.{ts,tsx}\" --print-width 120",
+		"pretty": "prettier --use-tabs --write \"src/**/*.{ts,tsx}\" --print-width 120",
 		"prepublishOnly": "yarn run build:ts:prod"
 	},
 	"dependencies": {
