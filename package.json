@@ -1,0 +1,30 @@
+{
+  "name": "@projectstorm/react-core",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "main": "./dist/main.js",
+  "typings": "./dist/@types/main",
+  "scripts": {
+    "build:ts": "webpack",
+    "build:ts:prod": "cross-env NODE_ENV=production webpack",
+    "pretty": "prettier --use-tabs --write \"{src,demos,tests}/**/*.{ts,tsx}\" --print-width 120",
+    "prepublishOnly": "yarn run build:ts:prod"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.109",
+    "@types/react": "^16.3.14",
+    "lodash": "^4.17.10",
+    "react": "^16.4.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.13.3",
+    "source-map-loader": "^0.2.3",
+    "ts-loader": "^4.3.0",
+    "typescript": "^2.8.4",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^2.1.4",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
