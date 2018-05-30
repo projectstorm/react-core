@@ -1,5 +1,5 @@
 {
-	"name": "projectstorm/react-core",
+	"name": "@projectstorm/react-core",
 	"version": "1.0.0",
 	"license": "MIT",
 	"main": "./dist/main.js",
