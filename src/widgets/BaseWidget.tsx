@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as _ from "lodash";
 
 export interface BaseWidgetProps {
 	/**
@@ -16,6 +17,8 @@ export interface BaseWidgetProps {
 	extraProps?: any;
 }
 
+export type BEMOptions = string | { [selector: string]: boolean };
+
 export class BaseWidget<P extends BaseWidgetProps = BaseWidgetProps, S = any> extends React.Component<P, S> {
 	className: string;
 
@@ -24,20 +27,36 @@ export class BaseWidget<P extends BaseWidgetProps = BaseWidgetProps, S = any> ex
 		this.className = name;
 	}
 
-	bem(selector: string): string {
-		return (this.props.baseClass || this.className) + selector + " ";
+	private buildClass(className?: string) {
+		return (this.props.baseClass || this.className) + (className || "");
 	}
 
-	getClassName(): string {
-		return (
-			(this.props.baseClass || this.className) + " " + (this.props.className ? this.props.className + " " : "")
-		);
+	bem(selector: BEMOptions): string {
+		if (selector && typeof selector === "object") {
+			return _
+				.map(selector, (value: boolean, key: string) => {
+					if (!!value) {
+						return this.buildClass(key);
+					}
+					return "";
+				})
+				.join(" ");
+		}
+		return this.buildClass(selector as string);
 	}
 
-	getProps(): any {
+	getClassName(selector?: BEMOptions): string {
+		let className = this.buildClass();
+		if (selector) {
+			className += " " + this.bem(selector);
+		}
+		return this.buildClass() + this.props.className || "";
+	}
+
+	getProps(options?: BEMOptions): any {
 		return {
 			...((this.props.extraProps as any) || {}),
-			className: this.getClassName()
+			className: this.getClassName(options)
 		};
 	}
 }
