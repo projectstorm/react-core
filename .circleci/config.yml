@@ -45,7 +45,7 @@ jobs:
     publish:
       working_directory: ~/repo
       docker:
-        - image: circleci/node:8.4.0
+      - image: projectstorm/react-diagrams-ci
       steps:
         - checkout
         - run:
