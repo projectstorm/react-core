@@ -16,6 +16,7 @@ module.exports = {
 		"**/tests/*\.test\.*"
 	],
 	testPathIgnorePatterns: [
-		"/node_modules/"
+		"/node_modules/",
+		"/dist/"
 	]
 };
