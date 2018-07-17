@@ -51,6 +51,10 @@ jobs:
       environment:
       steps:
       - checkout
+      - run:
+          name: Setup NPM
+          command: |
+            echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
       - restore_cache:
           keys:
           - modules-{{ checksum "yarn.lock" }}
