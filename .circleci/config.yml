@@ -3,6 +3,27 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
+workflows:
+  version: 2
+  test-and-publish:
+    jobs:
+    # Always build
+    - build:
+        filters:
+          tags:
+            # Build version tags in addition to normal branches
+            only: /^v.*/
+    - publish:
+        requires:
+        # Build before publishing
+        - build
+        filters:
+          tags:
+            # Only publish version tags
+            only: /^v.*/
+          branches:
+            # Don't publish any branches
+            ignore: /.*/
 jobs:
   build:
     docker:
@@ -12,19 +33,35 @@ jobs:
 
     steps:
       - checkout
-
-      # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-
-      - run: yarn install || yarn install || yarn install
-
+          - modules-{{ checksum "yarn.lock" }}
+      - run: yarn install --check-files --frozen-lockfile || yarn install --check-files --frozen-lockfile || yarn install --check-files --frozen-lockfile
       - save_cache:
           paths:
           - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
+          key: modules-{{ checksum "yarn.lock" }}
       - run: yarn run build:ts:prod
       - run: yarn run test
+
+    publish:
+      working_directory: ~/circulate
+      docker:
+      - image: circleci/node:8.4.0
+      environment:
+      steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - modules-{{ checksum "yarn.lock" }}
+      - run: yarn install --check-files --frozen-lockfile || yarn install --check-files --frozen-lockfile || yarn install --check-files --frozen-lockfile
+      - run:
+          name: Publish
+          command: |
+            if [[ "$CIRCLE_TAG" =~ ^v[0-9]*\.[0-9]*\.[0-9]*$ ]]; then
+              echo "Release $CIRCLE_TAG"
+              npm publish
+            else
+              echo "Prerelease $CIRCLE_TAG"
+              npm publish --tag next
+            fi
