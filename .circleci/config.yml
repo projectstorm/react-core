@@ -27,3 +27,4 @@ jobs:
 
       # run tests!
       - run: yarn run build:ts:prod
+      - run: yarn run test

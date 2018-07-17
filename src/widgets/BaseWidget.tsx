@@ -40,7 +40,10 @@ export class BaseWidget<P extends BaseWidgetProps = BaseWidgetProps, S = any> ex
 		if (selector && typeof selector === "object") {
 			return _
 				.chain(selector)
-				.filter()
+				.pickBy((val) => {
+					return !!val;
+				})
+				.keys()
 				.map(this.buildClass.bind(this))
 				.value()
 				.join(' ');

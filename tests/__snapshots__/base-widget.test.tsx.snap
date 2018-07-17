@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseWidget rendering 1`] = `
+<div
+  className="core-test"
+>
+  <div
+    className="core-test__child1"
+  />
+  <div
+    className="core-test__child2 core-test--modifier1"
+  />
+  <div
+    className="core-test--show-this-modifier core-test--also-this-modifier"
+  />
+</div>
+`;
+
+exports[`BaseWidget rendering with appended classNames 1`] = `
+<div
+  className="core-test-override extra-class"
+>
+  <div
+    className="core-test-override__child1"
+  />
+  <div
+    className="core-test-override__child2 core-test-override--modifier1"
+  />
+  <div
+    className="core-test-override--show-this-modifier core-test-override--also-this-modifier"
+  />
+</div>
+`;
+
+exports[`BaseWidget rendering with different base class 1`] = `
+<div
+  className="core-test-override"
+>
+  <div
+    className="core-test-override__child1"
+  />
+  <div
+    className="core-test-override__child2 core-test-override--modifier1"
+  />
+  <div
+    className="core-test-override--show-this-modifier core-test-override--also-this-modifier"
+  />
+</div>
+`;
+
+exports[`BaseWidget rendering with extra props 1`] = `
+<div
+  className="core-test"
+  style={
+    Object {
+      "color": "green",
+    }
+  }
+>
+  <div
+    className="core-test__child1"
+  />
+  <div
+    className="core-test__child2 core-test--modifier1"
+  />
+  <div
+    className="core-test--show-this-modifier core-test--also-this-modifier"
+  />
+</div>
+`;
