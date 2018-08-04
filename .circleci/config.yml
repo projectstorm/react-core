@@ -27,7 +27,7 @@ workflows:
 jobs:
   build:
     docker:
-      - image: circleci/node:8.4.0
+      - image: projectstorm/ci
     working_directory: ~/repo
     steps:
       - checkout
@@ -40,11 +40,22 @@ jobs:
           - node_modules
           key: modules-{{ checksum "yarn.lock" }}
       - run: yarn run build:ts:prod
-      - run: yarn run test
+      - run:
+          name: Unit Test
+          command: yarn test:ci
+          environment:
+            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: coverage
+      - run:
+          name: Code Coverage
+          command: codecov
 
   publish:
     docker:
-      - image: projectstorm/react-diagrams-ci
+      - image: projectstorm/ci
     working_directory: ~/repo
     steps:
       - checkout
