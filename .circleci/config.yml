@@ -27,7 +27,7 @@ workflows:
 jobs:
   build:
     docker:
-      - image: circleci/node:8.4.0
+      - image: projectstorm/chrome
     working_directory: ~/repo
     steps:
       - checkout
@@ -44,7 +44,7 @@ jobs:
 
   publish:
     docker:
-      - image: projectstorm/react-diagrams-ci
+      - image: projectstorm/chrome
     working_directory: ~/repo
     steps:
       - checkout
