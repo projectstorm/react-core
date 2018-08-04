@@ -10,7 +10,7 @@
 		"build:ts:prod": "cross-env NODE_ENV=production webpack",
 		"pretty": "prettier --use-tabs --write \"src/**/*.{ts,tsx}\" --print-width 120",
 		"prepack": "rm -rf ./dist && yarn run build:ts:prod",
-		"postversion": "git push origin $(git rev-parse --abbrev-ref HEAD) --tags"
+    "postversion": "git push origin $(git rev-parse --abbrev-ref HEAD) --tags",
 	},
 	"dependencies": {
 		"lodash": "^4.17.10",
