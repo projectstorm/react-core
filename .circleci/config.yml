@@ -33,12 +33,13 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - modules-{{ checksum "yarn.lock" }}
+          - modules-{{ checksum "package.json" }}
       - run: yarn install --check-files --frozen-lockfile || yarn install --check-files --frozen-lockfile || yarn install --check-files --frozen-lockfile
+      - run: greenkeeper-lockfile-update
       - save_cache:
           paths:
           - node_modules
-          key: modules-{{ checksum "yarn.lock" }}
+          key: modules-{{ checksum "package.json" }}
       - run: yarn run build:ts:prod
       - run:
           name: Unit Test
@@ -52,6 +53,7 @@ jobs:
       - run:
           name: Code Coverage
           command: codecov
+      - run: greenkeeper-lockfile-upload
 
   publish:
     docker:
@@ -61,7 +63,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - modules-{{ checksum "yarn.lock" }}
+          - modules-{{ checksum "package.json" }}
       - run:
           name: Setup NPM
           command: |
