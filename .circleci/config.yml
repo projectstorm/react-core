@@ -51,7 +51,7 @@ jobs:
           path: coverage
       - run:
           name: Code Coverage
-          command: bash <(curl -s https://codecov.io/bash)
+          command: codecov
 
   publish:
     docker:
