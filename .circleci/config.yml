@@ -74,7 +74,7 @@ jobs:
         command: |
           if [[ "$CIRCLE_TAG" =~ ^v[0-9]*\.[0-9]*\.[0-9]*$ ]]; then
             echo "Release $CIRCLE_TAG"
-            npm publish
+            npm publish --unsafe-perm
           else
             echo "Prerelease $CIRCLE_TAG"
             npm publish --tag next
