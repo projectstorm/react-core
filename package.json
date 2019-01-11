@@ -14,26 +14,26 @@
     "postversion": "git push origin $(git rev-parse --abbrev-ref HEAD) --tags"
   },
   "dependencies": {
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.11",
     "react": "^16.7.0"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.0",
-    "@types/lodash": "^4.14.109",
-    "@types/react": "^16.3.14",
+    "@types/jest": "^23.3.12",
+    "@types/lodash": "^4.14.119",
+    "@types/react": "^16.7.18",
     "babel-core": "^6.26.3",
-    "cross-env": "^5.1.6",
-    "jest": "^23.4.1",
-    "jest-junit": "^5.1.0",
-    "prettier": "^1.13.3",
+    "cross-env": "^5.2.0",
+    "jest": "^23.6.0",
+    "jest-junit": "^6.0.1",
+    "prettier": "^1.15.3",
     "react-test-renderer": "^16.7.0",
-    "source-map-loader": "^0.2.3",
-    "ts-jest": "^23.0.1",
-    "ts-loader": "^4.3.0",
-    "typescript": "^3.0.1",
-    "uglifyjs-webpack-plugin": "^2.0.0",
-    "webpack": "^4.18.1",
-    "webpack-cli": "^3.0.8",
+    "source-map-loader": "^0.2.4",
+    "ts-jest": "^23.10.5",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.2.2",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
     "webpack-node-externals": "^1.7.2"
   }
 }
